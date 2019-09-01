@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 
 import { User } from '../models/user';
 
+import { UserDetailsService } from '../services/user-details.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,16 +17,15 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
+    public userDetailsService: UserDetailsService,
     public ngZone: NgZone
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
       }
     });
   }
@@ -50,7 +51,11 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
     .then((result) => {
       this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
+        if(this.userDetailsService.haveUserDetails) {
+          this.router.navigate(['dashboard']);
+        } else {
+          this.router.navigate(['user-type']);
+        }
       });
       this.SetUserData(result.user);
     }).catch((error) => {

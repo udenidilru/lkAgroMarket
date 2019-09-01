@@ -17,6 +17,9 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthReverseGuard } from './shared/guards/auth-reverse.guard';
 import { FarmerHomeComponent } from './farmer-home/farmer-home.component';
 import { SelectUserLevelComponent } from './select-user-level/select-user-level.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,11 @@ import { SelectUserLevelComponent } from './select-user-level/select-user-level.
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule
   ],
   providers: [
     AuthGuard,

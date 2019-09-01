@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
+import { UserDetailsService } from '../services/user-details.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class AuthReverseGuard implements CanActivate {
   constructor(
     public authService: AuthService,
+    public userDetailsService: UserDetailsService,
     public router: Router
   ) {}
 
@@ -18,7 +20,11 @@ export class AuthReverseGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.isLoggedIn) {
-      this.router.navigate(['/dashboard']);
+      if (this.userDetailsService.haveUserDetails) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.router.navigate(['/user-type']);
+      }
     }
     return true;
   }

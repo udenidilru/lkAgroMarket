@@ -9,7 +9,6 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserDetailsService {
-  userDetails: UserDetails;
   user: User = JSON.parse(localStorage.getItem('user'));
   constructor(
     public afs: AngularFirestore,
@@ -18,6 +17,11 @@ export class UserDetailsService {
   ) { }
 
   getUserDetails() {
-    return this.afs.collection('userDetails', ref => ref.where('assignedTo', '==', this.user.uid)).valueChanges();
+    return this.afs.collection('userDetails', ref => ref.where('assignedTo', '==', this.user.uid)).get()[0];
+  }
+
+  get haveUserDetails(): boolean {
+    const userDetails = this.afs.collection('userDetails', ref => ref.where('assignedTo', '==', this.user.uid)).get();
+    return (userDetails !== null) ? true : false;
   }
 }
