@@ -23,7 +23,7 @@ export class AuthReverseGuard implements CanActivate {
       if (this.userDetailsService.haveUserDetails) {
         this.router.navigate(['/dashboard']);
       } else {
-        this.router.navigate(['/user-type']);
+        this.router.navigate(['/registration']);
       }
     }
     return true;

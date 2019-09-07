@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 
 import { LoginComponent } from './login/login.component';
 import { FarmerHomeComponent } from './farmer-home/farmer-home.component';
-import { SelectUserLevelComponent } from './select-user-level/select-user-level.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 import { AuthService } from './shared/services/auth.service';
 
@@ -27,7 +27,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     AppComponent,
     LoginComponent,
     FarmerHomeComponent,
-    SelectUserLevelComponent
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

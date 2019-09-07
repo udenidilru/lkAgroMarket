@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
 
 @Component({
-  selector: 'app-select-user-level',
-  templateUrl: './select-user-level.component.html',
-  styleUrls: ['./select-user-level.component.scss']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class SelectUserLevelComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   constructor() { }
 
