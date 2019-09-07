@@ -21,7 +21,14 @@ export class UserDetailsService {
   }
 
   get haveUserDetails(): boolean {
-    const userDetails = this.afs.collection('userDetails', ref => ref.where('assignedTo', '==', this.user.uid)).get();
-    return (userDetails !== null) ? true : false;
+    let haveUserDetails: boolean;
+    this.afs.firestore.doc('userDetails/' + this.user.uid).get().then(docSnapshot => {
+      if (docSnapshot.exists) {
+        haveUserDetails = true;
+      } else {
+        haveUserDetails = false;
+      }
+    });
+    return haveUserDetails;
   }
 }
