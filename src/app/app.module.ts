@@ -18,6 +18,10 @@ import { UserDetailsService } from './shared/services/user-details.service';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthReverseGuard } from './shared/guards/auth-reverse.guard';
+import { FarmerOnlyGuard } from './shared/guards/farmer-only.guard';
+import { BuyerOnlyGuard } from './shared/guards/buyer-only.guard';
+import { AdministratorOnlyGuard } from './shared/guards/administrator-only.guard';
+import { SuperAdminOnlyGuard } from './shared/guards/super-admin-only.guard';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbStepperModule, NbButtonModule, NbCardModule } from '@nebular/theme';
@@ -49,6 +53,10 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
   providers: [
     AuthGuard,
     AuthReverseGuard,
+    FarmerOnlyGuard,
+    BuyerOnlyGuard,
+    AdministratorOnlyGuard,
+    SuperAdminOnlyGuard,
     AuthService,
     UserDetailsService
   ],
