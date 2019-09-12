@@ -2,8 +2,8 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
-import { UserDetails } from '../models/user-details';
 import { User } from '../models/user';
+import { UserDetails } from '../models/user-details';
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +14,15 @@ export class UserDetailsService {
     public afs: AngularFirestore,
     public router: Router,
     public ngZone: NgZone
-  ) { }
+  ) {}
 
-  getUserDetails() {
-    return this.afs.collection('userDetails', ref => ref.where('assignedTo', '==', this.user.uid)).get()[0];
-  }
-
-  get haveUserDetails(): boolean {
-    let haveUserDetails: boolean;
+  haveUserDetails() {
     this.afs.firestore.doc('userDetails/' + this.user.uid).get().then(docSnapshot => {
       if (docSnapshot.exists) {
-        haveUserDetails = true;
+        return true;
       } else {
-        haveUserDetails = false;
+        return false;
       }
     });
-    return haveUserDetails;
   }
 }

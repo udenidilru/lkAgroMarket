@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import { LoginComponent } from './login/login.component';
-import { FarmerHomeComponent } from './farmer-home/farmer-home.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 import { AuthService } from './shared/services/auth.service';
@@ -18,21 +17,19 @@ import { UserDetailsService } from './shared/services/user-details.service';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthReverseGuard } from './shared/guards/auth-reverse.guard';
-import { FarmerOnlyGuard } from './shared/guards/farmer-only.guard';
-import { BuyerOnlyGuard } from './shared/guards/buyer-only.guard';
-import { AdministratorOnlyGuard } from './shared/guards/administrator-only.guard';
-import { SuperAdminOnlyGuard } from './shared/guards/super-admin-only.guard';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbStepperModule, NbButtonModule, NbCardModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FarmerHomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -53,10 +50,6 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
   providers: [
     AuthGuard,
     AuthReverseGuard,
-    FarmerOnlyGuard,
-    BuyerOnlyGuard,
-    AdministratorOnlyGuard,
-    SuperAdminOnlyGuard,
     AuthService,
     UserDetailsService
   ],

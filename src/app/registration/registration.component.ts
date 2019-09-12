@@ -4,6 +4,7 @@ import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firest
 import { Router } from '@angular/router';
 
 import { User } from '../shared/models/user';
+import { UserDetails } from '../shared/models/user-details';
 
 @Component({
   selector: 'app-registration',
@@ -47,29 +48,39 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    let userDetails;
+    let userDetails: UserDetails;
     if (this.selectedUserType === 'farmer') {
       userDetails = {
-        selectedUserType: this.selectedUserType,
-        nic: this.nic,
-        contact: this.contact,
-        district: this.district,
-        homeAddress: this.homeAddress,
-      };
-    } else if (this.selectedUserType === 'buyer') {
-      userDetails = {
-        selectedUserType: this.selectedUserType,
+        userLevel: this.selectedUserType,
         nic: this.nic,
         contact: this.contact,
         district: this.district,
         homeAddress: this.homeAddress,
         businessAddress: this.businessAddress,
+        organization: this.organization,
+        designation: this.designation,
+        organizationAddress: this.organization
+      };
+    } else if (this.selectedUserType === 'buyer') {
+      userDetails = {
+        userLevel: this.selectedUserType,
+        nic: this.nic,
+        contact: this.contact,
+        district: this.district,
+        homeAddress: this.homeAddress,
+        businessAddress: this.businessAddress,
+        organization: this.organization,
+        designation: this.designation,
+        organizationAddress: this.organization
       };
     } else {
       userDetails = {
-        selectedUserType: this.selectedUserType,
+        userLevel: this.selectedUserType,
         nic: this.nic,
         contact: this.contact,
+        district: this.district,
+        homeAddress: this.homeAddress,
+        businessAddress: this.businessAddress,
         organization: this.organization,
         designation: this.designation,
         organizationAddress: this.organization
@@ -82,11 +93,15 @@ export class RegistrationComponent implements OnInit {
       merge: true
     }).then(() => {
       this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
+        if (this.selectedUserType === 'farmer') {
+          this.router.navigate(['farmer-home']);
+        } else if (this.selectedUserType === 'buyer') {
+          this.router.navigate(['buyer-home']);
+        } else {
+          this.router.navigate(['administrator-home']);
+        }
       });
     });
-
-
   }
 
 }
