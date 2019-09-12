@@ -51,7 +51,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
     .then((result) => {
       this.ngZone.run(() => {
-        if(this.userDetailsService.haveUserDetails) {
+        if (this.userDetailsService.haveUserDetails) {
           this.router.navigate(['dashboard']);
         } else {
           this.router.navigate(['user-type']);

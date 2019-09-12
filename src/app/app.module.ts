@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -14,6 +14,7 @@ import { FarmerHomeComponent } from './farmer-home/farmer-home.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 import { AuthService } from './shared/services/auth.service';
+import { UserDetailsService } from './shared/services/user-details.service';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthReverseGuard } from './shared/guards/auth-reverse.guard';
@@ -36,6 +37,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
@@ -47,7 +49,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
   providers: [
     AuthGuard,
     AuthReverseGuard,
-    AuthService
+    AuthService,
+    UserDetailsService
   ],
   bootstrap: [AppComponent]
 })

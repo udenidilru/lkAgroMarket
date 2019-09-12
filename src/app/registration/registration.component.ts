@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+
+import { User } from '../shared/models/user';
 
 @Component({
   selector: 'app-registration',
@@ -7,7 +12,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public afs: AngularFirestore,
+    public router: Router,
+    public ngZone: NgZone
+  ) { }
+
+  selectedUserType = 'farmer';
+  nic = '';
+  contact = '';
+  district = '';
+  homeAddress = '';
+  businessAddress = '';
+  organization = '';
+  designation = '';
+  organizationAddress = '';
 
   ngOnInit() {
     window.document.body.style.backgroundImage = 'url("../../assets/login-background.jpg")';
@@ -21,6 +40,53 @@ export class RegistrationComponent implements OnInit {
       slide.style.background = 'transparent';
       slide.style.minHeight = '20em';
     }
+  }
+
+  show() {
+    console.log(this.selectedUserType);
+  }
+
+  submit() {
+    let userDetails;
+    if (this.selectedUserType === 'farmer') {
+      userDetails = {
+        selectedUserType: this.selectedUserType,
+        nic: this.nic,
+        contact: this.contact,
+        district: this.district,
+        homeAddress: this.homeAddress,
+      };
+    } else if (this.selectedUserType === 'buyer') {
+      userDetails = {
+        selectedUserType: this.selectedUserType,
+        nic: this.nic,
+        contact: this.contact,
+        district: this.district,
+        homeAddress: this.homeAddress,
+        businessAddress: this.businessAddress,
+      };
+    } else {
+      userDetails = {
+        selectedUserType: this.selectedUserType,
+        nic: this.nic,
+        contact: this.contact,
+        organization: this.organization,
+        designation: this.designation,
+        organizationAddress: this.organization
+      };
+    }
+
+    const user: User = JSON.parse(localStorage.getItem('user'));
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`userDetails/${user.uid}`);
+    userRef.set(userDetails, {
+      merge: true
+    }).then(() => {
+      this.ngZone.run(() => {
+        this.router.navigate(['dashboard']);
+      });
+    });
+
+
   }
 
 }

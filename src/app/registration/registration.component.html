@@ -1,40 +1,124 @@
 <div class="container">
-    <div class="row" id="row">
-      <div class="col-md-8 offset-md-2" id="center">
-        <img src="../../assets/logo.png" class="logo">
-        <nb-layout>
-          <nb-layout-column>
-            <nb-card>
-              <nb-card-body>
-                <nb-stepper orientation="horizontal">
-                  <nb-step [label]="labelOne">
-                    <ng-template #labelOne>First step</ng-template>
-                    <h2>Choose a Profile Type</h2>
-                    <div class="row">
-                      <div class="col-sm-4">
-                        Farmer
-                      </div>
-                      <div class="col-sm-4">
-                        Buyer
-                      </div>
-                      <div class="col-sm-4">
-                        Administrator (Admin Approval Required)
+  <div class="row" id="row">
+    <div class="col-md-8 offset-md-2" id="center">
+      <img src="../../assets/logo.png" class="logo">
+      <nb-layout>
+        <nb-layout-column>
+          <nb-card>
+            <nb-card-body>
+              <nb-stepper orientation="horizontal">
+                <nb-step [label]="labelOne">
+                  <ng-template #labelOne>First step</ng-template>
+                  <h2>Choose a Profile Type</h2>
+                  <div class="row">
+                    <div class="col-sm-4" class="text-center">
+                      <img src="../../assets/farmer.png" class="responsive">
+                      <br>
+                      <input type="radio" [(ngModel)]="selectedUserType" name="userType" value="farmer"
+                        (change)="show()" />
+                      Farmer
+                    </div>
+                    <div class="col-sm-4" class="text-center">
+                      <img src="../../assets/buyer.png" class="responsive">
+                      <br>
+                      <input type="radio" [(ngModel)]="selectedUserType" name="userType" value="buyer"
+                        (change)="show()" />
+                      Buyer
+                    </div>
+                    <div class="col-sm-4" class="text-center">
+                      <img src="../../assets/administrator.png" class="responsive">
+                      <br>
+                      <input type="radio" [(ngModel)]="selectedUserType" name="userType" value="administrator"
+                        (change)="show()" />
+                      Administrator
+                    </div>
+                  </div>
+                  <button nbButton disabled nbStepperNext>prev</button>
+                  <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+                <nb-step [label]="labelTwo">
+                  <ng-template #labelTwo>Second step</ng-template>
+                  <h2>Basic Information</h2>
+                  <div class="row">
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>NIC Number<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="nic">
                       </div>
                     </div>
-                    <button nbButton disabled nbStepperNext>prev</button>
-                    <button nbButton nbStepperNext>next</button>
-                  </nb-step>
-                  <nb-step [label]="labelTwo">
-                    <ng-template #labelTwo>Second step</ng-template>
-                    <h2>Basic Information</h2>
-                    <button nbButton nbStepperPrevious>prev</button>
-                    <button nbButton nbStepperNext>next</button>
-                  </nb-step>
-                </nb-stepper>
-              </nb-card-body>
-            </nb-card>
-          </nb-layout-column>
-        </nb-layout>
-      </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Contact Number<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="contact">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6" *ngIf="this.selectedUserType == 'farmer'">
+                      <div class="form-group">
+                        <label>District<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="district">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="this.selectedUserType == 'buyer' || this.selectedUserType == 'farmer'">
+                      <div class="form-group">
+                        <label *ngIf="this.selectedUserType == 'farmer'">Home/Store Address<span class="asterisk">*</span></label>
+                        <label *ngIf="this.selectedUserType == 'buyer'">Home Address<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="homeAddress">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="this.selectedUserType == 'buyer'">
+                      <div class="form-group">
+                        <label>Business Address<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="businessAddress">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6" *ngIf="this.selectedUserType == 'administrator'">
+                      <div class="form-group">
+                        <label>Organization Name<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="organization">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6" *ngIf="this.selectedUserType == 'administrator'">
+                      <div class="form-group">
+                        <label>Designation<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="designation">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="this.selectedUserType == 'administrator'">
+                      <div class="form-group">
+                        <label>Organization Address<span class="asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="organizationAddress">
+                      </div>
+                    </div>
+
+                  </div>
+                  <button nbButton nbStepperPrevious>prev</button>
+                  <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+                <nb-step [label]="labelThree">
+                  <ng-template #labelThree>Third step</ng-template>
+                  <h2>Terms of Services</h2>
+                  <div class="row">
+                    Please read our terms of services "Link"<br/>
+                    Do you agree with our terms of services? If yes, please press "agree" button to continue.
+                  </div>
+                  <button nbButton nbStepperPrevious>prev</button>
+                  <button class="btn btn-primary" (click)="submit()">Agree</button>
+                </nb-step>
+              </nb-stepper>
+            </nb-card-body>
+          </nb-card>
+        </nb-layout-column>
+      </nb-layout>
     </div>
   </div>
+</div>
