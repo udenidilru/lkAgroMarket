@@ -10,19 +10,22 @@ import { UserDetails } from '../models/user-details';
 })
 export class UserDetailsService {
   user: User = JSON.parse(localStorage.getItem('user'));
+  haveUserDetailsCheck: boolean = null;
   constructor(
     public afs: AngularFirestore,
     public router: Router,
     public ngZone: NgZone
-  ) {}
-
-  haveUserDetails() {
-    this.afs.firestore.doc('userDetails/' + this.user.uid).get().then(docSnapshot => {
+  ) {
+    this.afs.firestore.doc('userDetails/' + this.user.uid).onSnapshot(docSnapshot => {
       if (docSnapshot.exists) {
-        return true;
+        this.haveUserDetailsCheck = true;
       } else {
-        return false;
+        this.haveUserDetailsCheck = false;
       }
     });
+  }
+
+  get haveUserDetails(): boolean {
+    return this.haveUserDetailsCheck;
   }
 }

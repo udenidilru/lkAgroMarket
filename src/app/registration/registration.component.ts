@@ -19,15 +19,22 @@ export class RegistrationComponent implements OnInit {
     public ngZone: NgZone
   ) { }
 
-  selectedUserType = 'farmer';
-  nic = '';
-  contact = '';
-  district = '';
-  homeAddress = '';
-  businessAddress = '';
-  organization = '';
-  designation = '';
-  organizationAddress = '';
+  selectedUserType = 'Farmer';
+  latitude = 6.9497;
+  longitude = 80.7891;
+  userDetailsForm = new FormGroup({
+    nic: new FormControl('', Validators.required),
+    contact: new FormControl('', Validators.required),
+    district: new FormControl('Colombo', Validators.required),
+    homeAddress: new FormControl('', Validators.required),
+    businessAddress: new FormControl('', Validators.required),
+    organization: new FormControl('', Validators.required),
+    designation: new FormControl('', Validators.required),
+    organizationAddress: new FormControl('', Validators.required),
+  });
+  formControls = this.userDetailsForm.controls;
+
+  gotAllInfo = false;
 
   ngOnInit() {
     window.document.body.style.backgroundImage = 'url("../../assets/login-background.jpg")';
@@ -48,44 +55,37 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    let userDetails: UserDetails;
-    if (this.selectedUserType === 'farmer') {
-      userDetails = {
-        userLevel: this.selectedUserType,
-        nic: this.nic,
-        contact: this.contact,
-        district: this.district,
-        homeAddress: this.homeAddress,
-        businessAddress: this.businessAddress,
-        organization: this.organization,
-        designation: this.designation,
-        organizationAddress: this.organization
-      };
-    } else if (this.selectedUserType === 'buyer') {
-      userDetails = {
-        userLevel: this.selectedUserType,
-        nic: this.nic,
-        contact: this.contact,
-        district: this.district,
-        homeAddress: this.homeAddress,
-        businessAddress: this.businessAddress,
-        organization: this.organization,
-        designation: this.designation,
-        organizationAddress: this.organization
-      };
-    } else {
-      userDetails = {
-        userLevel: this.selectedUserType,
-        nic: this.nic,
-        contact: this.contact,
-        district: this.district,
-        homeAddress: this.homeAddress,
-        businessAddress: this.businessAddress,
-        organization: this.organization,
-        designation: this.designation,
-        organizationAddress: this.organization
-      };
+    if (this.formControls.nic.errors || this.formControls.contact.errors ) {
+      return false;
     }
+    if (this.selectedUserType === 'Farmer' && this.formControls.homeAddress.errors) {
+      return false;
+    }
+    if (this.selectedUserType === 'Buyer') {
+      if (this.formControls.homeAddress.errors || this.formControls.businessAddress.errors ) {
+        return false;
+      }
+    }
+    if (this.selectedUserType === 'Adminis') {
+      if (this.formControls.organization.errors || this.formControls.designation.errors || this.formControls.organizationAddress.errors) {
+        return false;
+      }
+    }
+
+    let userDetails: UserDetails;
+    userDetails = {
+      userLevel: this.selectedUserType,
+      longitude: this.longitude,
+      latitude: this.latitude,
+      nic: this.formControls.nic.value,
+      contact: this.formControls.contact.value,
+      district: this.formControls.district.value,
+      homeAddress: this.formControls.homeAddress.value,
+      businessAddress: this.formControls.businessAddress.value,
+      organization: this.formControls.organization.value,
+      designation: this.formControls.designation.value,
+      organizationAddress: this.formControls.organization.value
+    };
 
     const user: User = JSON.parse(localStorage.getItem('user'));
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`userDetails/${user.uid}`);
@@ -93,15 +93,8 @@ export class RegistrationComponent implements OnInit {
       merge: true
     }).then(() => {
       this.ngZone.run(() => {
-        if (this.selectedUserType === 'farmer') {
-          this.router.navigate(['farmer-home']);
-        } else if (this.selectedUserType === 'buyer') {
-          this.router.navigate(['buyer-home']);
-        } else {
-          this.router.navigate(['administrator-home']);
-        }
+        this.router.navigate(['dashboard']);
       });
     });
   }
-
 }

@@ -8,4 +8,6 @@ export interface UserDetails {
     organization: string;
     designation: string;
     organizationAddress: string;
+    longitude: number;
+    latitude: number;
 }

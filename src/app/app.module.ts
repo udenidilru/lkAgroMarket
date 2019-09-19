@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyDPHKNX6jV8y91K6C8ZyaBVB2QQbkohx2w' }),
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
