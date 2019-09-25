@@ -1,0 +1,31 @@
+.logo {
+  height: 2.75rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title span {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.header-row {
+  flex-grow: 1;
+}
+
+.green {
+  color: green;
+}
+
+.sidebar-btn {
+  display: block;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.sidebar-icon {
+  font-size: 25px;
+}

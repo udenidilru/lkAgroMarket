@@ -1,6 +1,13 @@
 export interface UserDetails {
-  uid: string;
   userLevel: string;
-  rating: number;
-  verified: boolean;
+  nic: string;
+  contact: string;
+  district: string;
+  homeAddress: string;
+  businessAddress: string;
+  organization: string;
+  designation: string;
+  organizationAddress: string;
+  longitude: number;
+  latitude: number;
 }
