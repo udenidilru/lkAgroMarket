@@ -1,18 +1,18 @@
-import { Injectable, NgZone } from "@angular/core";
-import { auth } from "firebase/app";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Injectable, NgZone } from '@angular/core';
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 import {
   AngularFirestore,
   AngularFirestoreDocument
-} from "@angular/fire/firestore";
-import { Router } from "@angular/router";
+} from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
-import { User } from "../models/user";
+import { User } from '../models/user';
 
-import { UserDetailsService } from "../services/user-details.service";
+import { UserDetailsService } from '../services/user-details.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthService {
   userData: any;
@@ -26,15 +26,15 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
-        localStorage.setItem("user", JSON.stringify(this.userData));
+        localStorage.setItem('user', JSON.stringify(this.userData));
       } else {
-        localStorage.setItem("user", null);
+        localStorage.setItem('user', null);
       }
     });
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem('user'));
     return user !== null ? true : false;
   }
 
@@ -56,9 +56,9 @@ export class AuthService {
       .then(result => {
         this.ngZone.run(() => {
           if (this.userDetailsService.haveUserDetails) {
-            this.router.navigate([""]);
+            this.router.navigate(['']);
           } else {
-            this.router.navigate(["/registration"]);
+            this.router.navigate(['/registration']);
           }
         });
         this.SetUserData(result.user);
@@ -85,8 +85,8 @@ export class AuthService {
 
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
-      localStorage.removeItem("user");
-      this.router.navigate(["login"]);
+      localStorage.removeItem('user');
+      this.router.navigate(['login']);
     });
   }
 }

@@ -1,21 +1,21 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {
   NbThemeModule,
   NbLayoutModule,
   NbTooltipModule,
   NbIconModule,
   NbSidebarModule
-} from "@nebular/theme";
-import { NbEvaIconsModule } from "@nebular/eva-icons";
+} from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
-import { DashboardRoutingModule } from "./dashboard-routing.module";
-import { environment } from "../../environments/environment";
+import { DashboardRoutingModule } from './dashboard-routing.module';
+import { environment } from '../../environments/environment';
 
-import { LayoutComponent } from "./layout/layout.component";
-import { FarmerComponent } from "./farmer/farmer.component";
+import { LayoutComponent } from './layout/layout.component';
+import { FarmerComponent } from './farmer/farmer.component';
 
 @NgModule({
   declarations: [LayoutComponent, FarmerComponent],
@@ -24,7 +24,7 @@ import { FarmerComponent } from "./farmer/farmer.component";
     DashboardRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    NbThemeModule.forRoot({ name: "default" }),
+    NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbSidebarModule.forRoot(),
     NbEvaIconsModule,

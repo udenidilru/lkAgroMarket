@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
   Router
-} from "@angular/router";
-import { Observable } from "rxjs";
+} from '@angular/router';
+import { Observable } from 'rxjs';
 
-import { AuthService } from "../services/auth.service";
-import { UserDetailsService } from "../services/user-details.service";
+import { AuthService } from '../services/auth.service';
+import { UserDetailsService } from '../services/user-details.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthReverseGuard implements CanActivate {
   constructor(
@@ -31,9 +31,9 @@ export class AuthReverseGuard implements CanActivate {
     | UrlTree {
     if (this.authService.isLoggedIn) {
       if (this.userDetailsService.haveUserDetails) {
-        this.router.navigate([""]);
+        this.router.navigate(['']);
       } else {
-        this.router.navigate(["registration"]);
+        this.router.navigate(['registration']);
       }
     }
     return true;
