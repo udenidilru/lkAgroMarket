@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'lk-agro-market.firebaseapp.com',
     databaseURL: 'https://lk-agro-market.firebaseio.com',
     projectId: 'lk-agro-market',
-    storageBucket: '',
+    storageBucket: 'lk-agro-market.appspot.com',
     messagingSenderId: '564982565851',
     appId: '1:564982565851:web:978735d9e5289447'
   }

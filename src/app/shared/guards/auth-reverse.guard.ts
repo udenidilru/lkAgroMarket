@@ -21,9 +21,9 @@ export class AuthReverseGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.isLoggedIn) {
       if (this.userDetailsService.haveUserDetails) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['']);
       } else {
-        this.router.navigate(['/registration']);
+        this.router.navigate(['registration']);
       }
     }
     return true;

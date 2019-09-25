@@ -6,13 +6,12 @@ import { AuthReverseGuard } from './shared/guards/auth-reverse.guard';
 
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: DashboardModule, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthReverseGuard] },
   { path: 'registration', component: RegistrationComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

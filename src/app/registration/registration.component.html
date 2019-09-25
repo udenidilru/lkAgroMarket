@@ -42,7 +42,7 @@
                   <h2>Location of Your Home</h2>
                   <div class="row">
                     Select a location correctly to find you easily if a farmer/ harvest buyer or an admin needs to meet
-                    you.
+                    you. (Drag and drop the red mark to the correct location)
                   </div>
                   <agm-map [latitude]="latitude" [longitude]="longitude">
                     <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"></agm-marker>
@@ -63,7 +63,8 @@
                             [ngClass]="{'is-invalid': formControls.nic.errors && formControls.nic.touched}">
                           <div class="validation-feedback"
                             *ngIf="!!formControls.nic.errors && !!formControls.nic.touched">
-                            NIC number is required
+                            <span *ngIf="!!formControls.nic.errors.pattern">Please provide valid NIC number</span>
+                            <span *ngIf="!!formControls.nic.errors.required">NIC number is required</span>
                           </div>
                         </div>
                       </div>
@@ -75,7 +76,8 @@
                             [ngClass]="{'is-invalid': formControls.contact.errors && formControls.contact.touched}">
                           <div class="validation-feedback"
                             *ngIf="!!formControls.contact.errors && !!formControls.contact.touched">
-                            Contact number is required
+                            <span *ngIf="!!formControls.contact.errors.pattern">Please provide valid phone number</span>
+                            <span *ngIf="!!formControls.contact.errors.required">Contact number is required</span>
                           </div>
                         </div>
                       </div>
@@ -116,9 +118,9 @@
                       <div class="col-sm-12"
                         *ngIf="this.selectedUserType == 'Buyer' || this.selectedUserType == 'Farmer'">
                         <div class="form-group">
-                          <label *ngIf="this.selectedUserType == 'farmer'">Home/Store Address<span
+                          <label *ngIf="this.selectedUserType == 'Farmer'">Home/Store Address<span
                               class="asterisk">*</span></label>
-                          <label *ngIf="this.selectedUserType == 'buyer'">Home Address<span
+                          <label *ngIf="this.selectedUserType == 'Buyer'">Home Address<span
                               class="asterisk">*</span></label>
                           <input type="text" class="form-control" formControlName="homeAddress">
                           <div class="validation-feedback"

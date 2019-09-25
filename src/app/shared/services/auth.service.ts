@@ -52,9 +52,9 @@ export class AuthService {
     .then((result) => {
       this.ngZone.run(() => {
         if (this.userDetailsService.haveUserDetails) {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['']);
         } else {
-          this.router.navigate(['user-type']);
+          this.router.navigate(['/registration']);
         }
       });
       this.SetUserData(result.user);

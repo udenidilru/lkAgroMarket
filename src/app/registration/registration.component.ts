@@ -23,8 +23,8 @@ export class RegistrationComponent implements OnInit {
   latitude = 6.9497;
   longitude = 80.7891;
   userDetailsForm = new FormGroup({
-    nic: new FormControl('', Validators.required),
-    contact: new FormControl('', Validators.required),
+    nic: new FormControl('', [Validators.required, Validators.pattern('^([0-9]{9}[x|X|v|V]|[0-9]{12})$')]),
+    contact: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
     district: new FormControl('Colombo', Validators.required),
     homeAddress: new FormControl('', Validators.required),
     businessAddress: new FormControl('', Validators.required),
@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnInit {
       merge: true
     }).then(() => {
       this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['']);
       });
     });
   }
