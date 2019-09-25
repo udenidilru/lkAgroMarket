@@ -1,1 +1,37 @@
-<p>layout works!</p>
+<nb-layout>
+  <nb-layout-header subheader>
+    <div class="row header-row">
+      <div class="col title">
+        <span class="align-middle">LK Agro Market</span>
+      </div>
+      <!-- <div class="col text-right" *ngIf="user">
+        <button class="align-middle" nbButton hero status="info" size="small" (click)="logout()">
+          <nb-icon icon="unlock-outline"></nb-icon>Sign out
+        </button>
+      </div> -->
+    </div>
+  </nb-layout-header>
+
+  <nb-sidebar state="compacted">
+    <span
+      class="sidebar-btn"
+      routerLink="/farmer-dashboard"
+      routerLinkActive="green"
+    >
+      <nb-icon
+        icon="home"
+        class="sidebar-icon"
+        nbTooltip="Farmer Dashboard"
+        nbTooltipPlacement="right"
+      ></nb-icon>
+    </span>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    copyrights
+  </nb-layout-footer>
+</nb-layout>

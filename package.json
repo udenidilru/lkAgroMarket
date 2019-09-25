@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "code:format": "nx format:write"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,8 @@
     "@angular/router": "~8.2.0",
     "@nebular/eva-icons": "4.2.1",
     "@nebular/theme": "^4.2.1",
+    "@nrwl/workspace": "^8.5.1",
+    "@types/events": "^3.0.0",
     "eva-icons": "^1.1.1",
     "firebase": "^6.4.0",
     "rxjs": "~6.4.0",

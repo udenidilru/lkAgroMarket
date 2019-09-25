@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import {
-  CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
+  CanActivate,
   Router
 } from "@angular/router";
 import { Observable } from "rxjs";
@@ -14,13 +14,12 @@ import { UserDetailsService } from "../services/user-details.service";
 @Injectable({
   providedIn: "root"
 })
-export class AuthReverseGuard implements CanActivate {
+export class RegistrationGuard implements CanActivate {
   constructor(
     public authService: AuthService,
     public userDetailsService: UserDetailsService,
     public router: Router
   ) {}
-
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -29,12 +28,10 @@ export class AuthReverseGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.isLoggedIn) {
-      if (this.userDetailsService.haveUserDetails) {
-        this.router.navigate([""]);
-      } else {
-        this.router.navigate(["registration"]);
-      }
+    if (this.authService.isLoggedIn === false) {
+      this.router.navigate(["login"]);
+    } else if (this.userDetailsService.haveUserDetails) {
+      this.router.navigate([""]);
     }
     return true;
   }
