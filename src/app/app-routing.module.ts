@@ -3,18 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthReverseGuard } from './shared/guards/auth-reverse.guard';
+import { RegistrationGuard } from './shared/guards/registration.guard';
 
 import { LoginComponent } from './login/login.component';
-import { SelectUserLevelComponent } from './select-user-level/select-user-level.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', loadChildren: () => DashboardModule, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthReverseGuard] },
-  { path: 'user-type', component: SelectUserLevelComponent, canActivate: [AuthGuard] }
+  {
+    path: 'registration',
+    component: RegistrationComponent,
+    canActivate: [RegistrationGuard]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

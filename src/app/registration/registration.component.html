@@ -1,0 +1,339 @@
+<div class="container">
+  <div class="row" id="row">
+    <div class="col-md-8 offset-md-2" id="center">
+      <img src="../../assets/logo.png" class="logo" />
+      <nb-layout>
+        <nb-layout-column>
+          <nb-card>
+            <nb-card-body>
+              <nb-stepper orientation="horizontal">
+                <nb-step [label]="labelOne">
+                  <ng-template #labelOne>First step</ng-template>
+                  <h2>Choose a Profile Type</h2>
+                  <div class="row">
+                    <div class="col-sm-4" class="text-center">
+                      <img src="../../assets/farmer.png" class="responsive" />
+                      <br />
+                      <input
+                        type="radio"
+                        [(ngModel)]="selectedUserType"
+                        name="userType"
+                        value="Farmer"
+                        (change)="show()"
+                      />
+                      Farmer
+                    </div>
+                    <div class="col-sm-4" class="text-center">
+                      <img src="../../assets/buyer.png" class="responsive" />
+                      <br />
+                      <input
+                        type="radio"
+                        [(ngModel)]="selectedUserType"
+                        name="userType"
+                        value="Buyer"
+                        (change)="show()"
+                      />
+                      Buyer
+                    </div>
+                    <div class="col-sm-4" class="text-center">
+                      <img
+                        src="../../assets/administrator.png"
+                        class="responsive"
+                      />
+                      <br />
+                      <input
+                        type="radio"
+                        [(ngModel)]="selectedUserType"
+                        name="userType"
+                        value="Administrator"
+                        (change)="show()"
+                      />
+                      Administrator
+                    </div>
+                  </div>
+                  <button nbButton disabled nbStepperNext>prev</button>
+                  <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+                <nb-step [label]="labelTwo">
+                  <ng-template #labelTwo>Second step</ng-template>
+                  <h2>Location of Your Home</h2>
+                  <div class="row">
+                    Select a location correctly to find you easily if a farmer/
+                    harvest buyer or an admin needs to meet you. (Drag and drop
+                    the red mark to the correct location)
+                  </div>
+                  <agm-map [latitude]="latitude" [longitude]="longitude">
+                    <agm-marker
+                      [latitude]="latitude"
+                      [longitude]="longitude"
+                      [markerDraggable]="true"
+                    ></agm-marker>
+                  </agm-map>
+                  <button nbButton nbStepperPrevious>prev</button>
+                  <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+                <nb-step [label]="labelThree">
+                  <ng-template #labelThree>Third step</ng-template>
+                  <h2>Basic Information</h2>
+                  <form [formGroup]="userDetailsForm">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label
+                            >NIC Number<span class="asterisk">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="nic"
+                            [ngClass]="{
+                              'is-invalid':
+                                formControls.nic.errors &&
+                                formControls.nic.touched
+                            }"
+                          />
+                          <div
+                            class="validation-feedback"
+                            *ngIf="
+                              !!formControls.nic.errors &&
+                              !!formControls.nic.touched
+                            "
+                          >
+                            <span *ngIf="!!formControls.nic.errors.pattern"
+                              >Please provide valid NIC number</span
+                            >
+                            <span *ngIf="!!formControls.nic.errors.required"
+                              >NIC number is required</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label
+                            >Contact Number<span class="asterisk"
+                              >*</span
+                            ></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="contact"
+                            [ngClass]="{
+                              'is-invalid':
+                                formControls.contact.errors &&
+                                formControls.contact.touched
+                            }"
+                          />
+                          <div
+                            class="validation-feedback"
+                            *ngIf="
+                              !!formControls.contact.errors &&
+                              !!formControls.contact.touched
+                            "
+                          >
+                            <span *ngIf="!!formControls.contact.errors.pattern"
+                              >Please provide valid phone number</span
+                            >
+                            <span *ngIf="!!formControls.contact.errors.required"
+                              >Contact number is required</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-sm-6"
+                        *ngIf="this.selectedUserType == 'farmer'"
+                      >
+                        <div class="form-group">
+                          <label>District<span class="asterisk">*</span></label>
+                          <select
+                            class="form-control"
+                            formControlName="district"
+                          >
+                            <option value="Ampara">Ampara</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Colombo">Colombo</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Kegalle">Kegalle</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Moneragala">Moneragala</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Vavuniya">Vavuniya</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-sm-12"
+                        *ngIf="
+                          this.selectedUserType == 'Buyer' ||
+                          this.selectedUserType == 'Farmer'
+                        "
+                      >
+                        <div class="form-group">
+                          <label *ngIf="this.selectedUserType == 'Farmer'"
+                            >Home/Store Address<span class="asterisk"
+                              >*</span
+                            ></label
+                          >
+                          <label *ngIf="this.selectedUserType == 'Buyer'"
+                            >Home Address<span class="asterisk">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="homeAddress"
+                          />
+                          <div
+                            class="validation-feedback"
+                            *ngIf="
+                              !!formControls.homeAddress.errors &&
+                              !!formControls.homeAddress.touched
+                            "
+                          >
+                            Home address is required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-sm-12"
+                        *ngIf="this.selectedUserType == 'Buyer'"
+                      >
+                        <div class="form-group">
+                          <label
+                            >Business Address<span class="asterisk"
+                              >*</span
+                            ></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="businessAddress"
+                          />
+                          <div
+                            class="validation-feedback"
+                            *ngIf="
+                              !!formControls.businessAddress.errors &&
+                              !!formControls.businessAddress.touched
+                            "
+                          >
+                            Business address is required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-sm-6"
+                        *ngIf="this.selectedUserType == 'Administrator'"
+                      >
+                        <div class="form-group">
+                          <label
+                            >Organization Name<span class="asterisk"
+                              >*</span
+                            ></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="organization"
+                          />
+                          <div
+                            class="validation-feedback"
+                            *ngIf="
+                              !!formControls.organization.errors &&
+                              !!formControls.organization.touched
+                            "
+                          >
+                            Organization name is required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-sm-6"
+                        *ngIf="this.selectedUserType == 'Administrator'"
+                      >
+                        <div class="form-group">
+                          <label
+                            >Designation<span class="asterisk">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="designation"
+                          />
+                          <div
+                            class="validation-feedback"
+                            *ngIf="
+                              !!formControls.designation.errors &&
+                              !!formControls.designation.touched
+                            "
+                          >
+                            Designation is required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-sm-12"
+                        *ngIf="this.selectedUserType == 'administrator'"
+                      >
+                        <div class="form-group">
+                          <label
+                            >Organization Address<span class="asterisk"
+                              >*</span
+                            ></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="organizationAddress"
+                          />
+                          <div
+                            class="validation-feedback"
+                            *ngIf="
+                              !!formControls.organizationAddress.errors &&
+                              !!formControls.organizationAddress.touched
+                            "
+                          >
+                            Organization address is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <button nbButton nbStepperPrevious>prev</button>
+                  <button nbButton status="primary" (click)="submit()">
+                    Register
+                  </button>
+                </nb-step>
+              </nb-stepper>
+            </nb-card-body>
+          </nb-card>
+        </nb-layout-column>
+      </nb-layout>
+    </div>
+  </div>
+</div>
