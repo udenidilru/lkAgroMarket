@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutComponent } from './layout/layout.component';
 import { FarmerComponent } from './farmer/farmer.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'farmer-dashboard',
         component: FarmerComponent
+      },
+      {
+        path: 'chat-dashboard',
+        component: ChatComponent
       }
     ]
   }
