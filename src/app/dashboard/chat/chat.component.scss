@@ -1,0 +1,25 @@
+nb-chat {
+    width: 1000px;
+    height: 1000px;
+    background-color: rgb(158, 245, 158);
+  }
+nb-sidebar {
+    width: 400px;
+    background-color: rgb(195, 241, 202);
+    
+}
+nb-card{
+    width: 1000px;
+}
+nb-card nb-icon{
+    float: right; 
+    font-size: 2rem;
+    margin-left: 50px;
+    color: blue;
+}
+nb-chat-form{
+    color: rgb(19, 231, 83)
+}
+nb-layout-column nb-card {
+    background-color: rgb(208, 253, 166);
+}

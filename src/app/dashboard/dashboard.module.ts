@@ -10,7 +10,9 @@ import {
   NbSidebarModule,
   NbChatModule,
   NbListModule,
-  NbUserModule
+  NbUserModule,
+  NbCardModule,
+  NbSearchModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -36,7 +38,9 @@ import { ChatComponent } from './chat/chat.component';
     NbTooltipModule,
     NbChatModule,
     NbListModule,
-    NbUserModule
+    NbUserModule,
+    NbCardModule,
+    NbSearchModule
     
   ]
 })
