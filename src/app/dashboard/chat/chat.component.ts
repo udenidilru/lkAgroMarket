@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-chat',
@@ -6,17 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  users: { name: string, title: string }[] = [
-    { name: 'Carla Espinosa', title: '' },
-    { name: 'Bob Kelso', title: '' },
-    { name: 'Janitor', title: '' },
-    { name: 'Perry Cox', title: '' },
-    { name: 'Ben Sullivan', title: '' },
-  ];
 
-  constructor() { }
+users: Observable<any[]>;
 
-  ngOnInit() {
+  constructor(private afs: AngularFirestore) {
+    this.users = afs.collection('users').valueChanges();
   }
 
+  ngOnInit() {
+   
+  }
+  
+  
 }
