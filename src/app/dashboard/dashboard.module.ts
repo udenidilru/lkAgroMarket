@@ -7,7 +7,8 @@ import {
   NbLayoutModule,
   NbTooltipModule,
   NbIconModule,
-  NbSidebarModule
+  NbSidebarModule,
+  NbCardModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -16,9 +17,10 @@ import { environment } from '../../environments/environment';
 
 import { LayoutComponent } from './layout/layout.component';
 import { FarmerComponent } from './farmer/farmer.component';
+import { CreateAdComponent } from './farmer/create-ad/create-ad.component';
 
 @NgModule({
-  declarations: [LayoutComponent, FarmerComponent],
+  declarations: [LayoutComponent, FarmerComponent, CreateAdComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -29,7 +31,8 @@ import { FarmerComponent } from './farmer/farmer.component';
     NbSidebarModule.forRoot(),
     NbEvaIconsModule,
     NbIconModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbCardModule
   ]
 })
 export class DashboardModule {}
