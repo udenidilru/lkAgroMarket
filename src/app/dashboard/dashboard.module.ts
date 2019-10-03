@@ -8,7 +8,9 @@ import {
   NbTooltipModule,
   NbIconModule,
   NbSidebarModule,
-  NbCardModule
+  NbCardModule,
+  NbSpinnerModule,
+  NbButtonModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -32,7 +34,9 @@ import { CreateAdComponent } from './farmer/create-ad/create-ad.component';
     NbEvaIconsModule,
     NbIconModule,
     NbTooltipModule,
-    NbCardModule
+    NbCardModule,
+    NbSpinnerModule,
+    NbButtonModule
   ]
 })
 export class DashboardModule {}
