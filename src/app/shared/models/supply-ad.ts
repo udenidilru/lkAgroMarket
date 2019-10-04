@@ -2,14 +2,15 @@ export interface SupplyAd {
   id: string;
   type: string;
   food: string;
-  amount: number;
+  quantity: number;
+  quantityUnit: string;
   pricePerUnit: number;
-  image1: File;
-  image2: File;
-  image3: File;
-  image4: File;
+  images: File[];
+  video: File[];
   description: string;
   organic: boolean;
   expireDate: Date;
   createdAt: Date;
+  views: number;
+  contactClicks: number;
 }
