@@ -8,14 +8,31 @@ import { RegistrationGuard } from './shared/guards/registration.guard';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => DashboardModule, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [AuthReverseGuard] },
+  {
+    path: '',
+    loadChildren: () => DashboardModule,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthReverseGuard]
+  },
   {
     path: 'registration',
     component: RegistrationComponent,
     canActivate: [RegistrationGuard]
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

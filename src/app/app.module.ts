@@ -28,9 +28,15 @@ import { UserDetailsService } from './shared/services/user-details.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthReverseGuard } from './shared/guards/auth-reverse.guard';
 import { RegistrationGuard } from './shared/guards/registration.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegistrationComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegistrationComponent,
+    NotFoundComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
