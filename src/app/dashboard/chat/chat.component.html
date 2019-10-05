@@ -23,7 +23,7 @@
  
   <nb-chat size="large">
   
-    <nb-chat-message *ngFor="let msg of messages | async"[type]="msg.text" [message]="msg.content" [date]="msg.date">
+    <nb-chat-message *ngFor="let msg of messages | async"[type]="msg.text" [message]="msg.content" [date]="msg.date" [avatar]="msg.avatar">
   </nb-chat-message>
    
     <nb-chat-form (send)="addPost($event)" [dropFiles]="true">

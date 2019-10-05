@@ -60,8 +60,9 @@ export class ChatComponent {
     
   }*/
   addPost(event:any) {
+    const user = JSON.parse(localStorage.getItem('user'));
     
-    return this.afs.collection('chats').add({'content': event.message,'date': Date.now() });
+    return this.afs.collection('chats').add({'content': event.message,'date': Date.now(),'avatar':user.photoURL });
     
   }
 }
