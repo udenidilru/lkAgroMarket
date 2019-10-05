@@ -49,14 +49,19 @@ export class ChatComponent {
       setTimeout(() => { this.messages.push(botReply) }, 500);
     }
   }*/
-  addPost(content) {
+  /*addPost(content,date) {
     const data = {
       
-      content
-      
+      content,
+      date:new Date()
       
     };
-    return this.afs.collection('chats').add({'content': data.content});
+    return this.afs.collection('chats').add({'content': data.content,'date': data.date});
+    
+  }*/
+  addPost(event:any) {
+    
+    return this.afs.collection('chats').add({'content': event.message,'date': Date.now() });
     
   }
 }
