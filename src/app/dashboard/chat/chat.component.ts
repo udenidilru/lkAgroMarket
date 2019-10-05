@@ -12,14 +12,18 @@ import { ChatShowcaseService } from '../shared/services/chat-showcase.service';
 export class ChatComponent {
 
   users: Observable<any[]>;
-  messages: any[] = [];
+ // messages: any[] = [];
+ messages:Observable<any[]>;
+  content:string;
   constructor(private afs: AngularFirestore,protected chatShowcaseService:ChatShowcaseService) {
     this.users = afs.collection('users').valueChanges();
-    this.messages = this.chatShowcaseService.loadMessages();
+    //this.messages = this.chatShowcaseService.loadMessages();
+    this.messages = afs.collection('chats').valueChanges();
+
   }
 
  
-  sendMessage(event: any) {
+  /*sendMessage(event: any) {
     const files = !event.files ? [] : event.files.map((file) => {
       return {
         url: file.src,
@@ -27,6 +31,7 @@ export class ChatComponent {
         icon: 'file-text-outline',
       };
     });
+    
 
     this.messages.push({
       text: event.message,
@@ -43,6 +48,16 @@ export class ChatComponent {
     if (botReply) {
       setTimeout(() => { this.messages.push(botReply) }, 500);
     }
+  }*/
+  addPost(content) {
+    const data = {
+      
+      content
+      
+      
+    };
+    return this.afs.collection('chats').add({'content': data.content});
+    
   }
 }
 
