@@ -10,6 +10,8 @@ import { ChatShowcaseService } from '../shared/services/chat-showcase.service';
 })
 
 export class ChatComponent {
+  
+  
 
   users: Observable<any[]>;
  // messages: any[] = [];
@@ -21,7 +23,7 @@ export class ChatComponent {
     this.messages = afs.collection('chats').valueChanges();
 
   }
-
+  
  
   /*sendMessage(event: any) {
     const files = !event.files ? [] : event.files.map((file) => {
@@ -59,10 +61,11 @@ export class ChatComponent {
     return this.afs.collection('chats').add({'content': data.content,'date': data.date});
     
   }*/
+  
   addPost(event:any) {
     const user = JSON.parse(localStorage.getItem('user'));
     
-    return this.afs.collection('chats').add({'content': event.message,'date': Date.now(),'avatar':user.photoURL });
+    return this.afs.collection('chats').add({'content': event.message,'date': Date.now(),'avatar':user.photoURL,'uid':user.uid });
     
   }
 }

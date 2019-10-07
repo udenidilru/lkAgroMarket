@@ -13,7 +13,8 @@ import {
   NbUserModule,
   NbCardModule,
   NbSearchModule,
-  NbInputModule
+  NbInputModule,
+  NbMenuModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -24,9 +25,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { FarmerComponent } from './farmer/farmer.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatShowcaseService } from './shared/services/chat-showcase.service';
+import { ChatroomComponent } from './chatroom/chatroom.component';
 
 @NgModule({
-  declarations: [LayoutComponent, FarmerComponent, ChatComponent],
+  declarations: [LayoutComponent, FarmerComponent, ChatComponent, ChatroomComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -43,7 +45,8 @@ import { ChatShowcaseService } from './shared/services/chat-showcase.service';
     NbUserModule,
     NbCardModule,
     NbSearchModule,
-    NbInputModule
+    NbInputModule,
+    NbMenuModule.forRoot()
     
   ],
   providers: [ChatShowcaseService],

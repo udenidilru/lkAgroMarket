@@ -1,0 +1,34 @@
+<nb-layout>
+    <nb-sidebar>
+        <nb-list>
+          <nb-list-item *ngFor="let user of users | async">
+            <a href="#"><nb-user [name]="user.displayName" [title]="user.email"></nb-user></a>    
+         </nb-list-item>
+       </nb-list>
+      
+    </nb-sidebar>
+    <nb-layout-column>
+      <nb-card>
+        <nb-card-body>
+      
+          
+      
+        </nb-card-body>
+    </nb-card>
+   
+    <nb-chat size="large">
+    
+     
+     
+      
+    </nb-chat>
+    <nb-card>
+      <nb-card-body>
+        
+      </nb-card-body>
+    </nb-card>
+  
+    </nb-layout-column>
+  
+   </nb-layout>
+   

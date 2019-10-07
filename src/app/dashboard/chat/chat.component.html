@@ -1,13 +1,11 @@
 <nb-layout>
   <nb-sidebar>
-        
-    <nb-search type="rotate-layout">Search Users</nb-search>
-    <nb-list>
-       <nb-list-item *ngFor="let user of users | async">
-          <nb-user [name]="user.displayName" [title]="user.email">
-          </nb-user>
-      </nb-list-item>
-    </nb-list>
+      <nb-list>
+        <nb-list-item *ngFor="let user of users | async">
+          <a href="#"><nb-user [name]="user.displayName" [title]="user.email"></nb-user></a>    
+       </nb-list-item>
+     </nb-list>
+    
   </nb-sidebar>
   <nb-layout-column>
     <nb-card>
