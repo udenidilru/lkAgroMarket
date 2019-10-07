@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import {  RouterModule } from '@angular/router';
 import {
   NbThemeModule,
   NbLayoutModule,
@@ -31,6 +32,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
   declarations: [LayoutComponent, FarmerComponent, ChatComponent, ChatroomComponent],
   imports: [
     CommonModule,
+    RouterModule,
     DashboardRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

@@ -2,7 +2,9 @@
     <nb-sidebar>
         <nb-list>
           <nb-list-item *ngFor="let user of users | async">
-            <a href="#"><nb-user [name]="user.displayName" [title]="user.email"></nb-user></a>    
+                <router-outlet>
+            <a routerLink="../chat-dashboard"><nb-user [name]="user.displayName" [title]="user.email"></nb-user></a>   
+        </router-outlet> 
          </nb-list-item>
        </nb-list>
       
@@ -31,4 +33,5 @@
     </nb-layout-column>
   
    </nb-layout>
+
    
