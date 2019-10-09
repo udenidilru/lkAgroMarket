@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { FarmerComponent } from './farmer/farmer.component';
 import { ChatComponent } from './chat/chat.component';
-import { ChatroomComponent } from './chatroom/chatroom.component';
 
 const routes: Routes = [
   {
@@ -24,10 +23,7 @@ const routes: Routes = [
         path: 'chat-dashboard',
         component: ChatComponent
       },
-      {
-        path: 'chatroom-dashboard',
-        component: ChatroomComponent
-      }
+      
     ]
   }
 ];

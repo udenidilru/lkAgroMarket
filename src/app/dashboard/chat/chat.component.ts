@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ChatShowcaseService } from '../shared/services/chat-showcase.service';
+
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+
+
 
 @Component({
   selector: 'app-chat',
@@ -9,21 +13,27 @@ import { ChatShowcaseService } from '../shared/services/chat-showcase.service';
   styleUrls: ['./chat.component.scss']
 })
 
+
 export class ChatComponent {
   
   
-
   users: Observable<any[]>;
- // messages: any[] = [];
- messages:Observable<any[]>;
+  selectedUser:any;
+  avatar:any;
+  messages:Observable<any[]>;
   content:string;
   constructor(private afs: AngularFirestore,protected chatShowcaseService:ChatShowcaseService) {
     this.users = afs.collection('users').valueChanges();
     //this.messages = this.chatShowcaseService.loadMessages();
     this.messages = afs.collection('chats').valueChanges();
+    
 
   }
-  
+ 
+  UserClicked(users: any){
+    this.selectedUser=users.displayName;
+    this.avatar = users.photoURL;
+  }
  
   /*sendMessage(event: any) {
     const files = !event.files ? [] : event.files.map((file) => {

@@ -1,21 +1,24 @@
 <nb-layout>
   <nb-sidebar>
       <nb-list>
-        <nb-list-item *ngFor="let user of users | async">
-          <a href="#"><nb-user [name]="user.displayName" [title]="user.email"></nb-user></a>    
+         <!--<nb-list-item *ngFor="let user of users | async">
+         <nb-user [name]="user.displayName" [title]="user.email"></nb-user> </nb-list-item>  -->
+         <nb-list-item *ngFor="let user of users | async">   
+           <button nbButton (click)="UserClicked(user)"><nb-user [name]="user.displayName" [title]="user.email" [picture]="user.photoURL"></nb-user></button>
        </nb-list-item>
      </nb-list>
-    
   </nb-sidebar>
+
   <nb-layout-column>
     <nb-card>
       <nb-card-body>
-    
+        
+       <!-- </nb-user>
         <nb-user size="medium"
                  name="John Doe"
                  picture="https://via.placeholder.com/50/4479e7/ffffff?Text=IMG">
-        </nb-user>
-    
+        </nb-user>-->
+        <nb-user [name]="selectedUser" [picture]="avatar"></nb-user> 
       </nb-card-body>
   </nb-card>
  

@@ -1,13 +1,16 @@
 
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 import { messages } from './messages';
 import { botReplies, gifsLinks, imageLinks } from './reply';
 
 @Injectable()
 export class ChatShowcaseService {
-
-
+  users: Observable<any[]>;
+  //selectedUser:any
+  
   loadMessages() {
     return messages;
   }
@@ -40,4 +43,6 @@ export class ChatShowcaseService {
     botReply.reply.text = botReply.answerArray[Math.floor(Math.random() * botReply.answerArray.length)];
     return { ...botReply.reply };
   }
+  
+
 }

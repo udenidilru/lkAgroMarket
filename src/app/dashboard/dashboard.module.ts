@@ -26,10 +26,11 @@ import { LayoutComponent } from './layout/layout.component';
 import { FarmerComponent } from './farmer/farmer.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatShowcaseService } from './shared/services/chat-showcase.service';
-import { ChatroomComponent } from './chatroom/chatroom.component';
+
+
 
 @NgModule({
-  declarations: [LayoutComponent, FarmerComponent, ChatComponent, ChatroomComponent],
+  declarations: [LayoutComponent, FarmerComponent, ChatComponent],
   imports: [
     CommonModule,
     RouterModule,
